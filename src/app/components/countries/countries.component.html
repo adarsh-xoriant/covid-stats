@@ -1,0 +1,37 @@
+<div class="jubmotron bg-white text-center">
+    <h1 class="display-4">Covid Statistics Dashboard Country Wise</h1>
+    <hr class="my-4">
+    <p class="lead">Get the Country-wise Covid Statistics along with Line Chart</p>
+    <hr class="my-4">
+</div>
+
+<div class="mx-auto text-center">
+    <div class="form-group col-lg-5 mx-auto">
+    <label for="countries-dropdown">Select Country</label>
+    <select class="form-control"  id="countries-dropdown" #selectedCountry (change)="updateValues(selectedCountry.value)">
+        <option value="Countries">Countries</option>
+        <option *ngFor="let country of countries" value="{{country}}">
+            {{country}}
+        </option>
+    </select>
+    </div>
+</div>
+
+<div *ngIf="isLoading" class="d-flex justify-content-center">
+    <div class="spinner-border text-primary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+</div>
+
+<app-dashboard-card 
+        [totalConfirmed]="totalConfirmed"
+        [totalActive]="totalActive"
+        [totalRecovered]="totalRecovered"
+        [totalDeaths]="totalDeaths">
+</app-dashboard-card>
+<div class="row" *ngIf="countryTimeSeries.length>0">
+    <div class="col-6 mx-auto">
+        <app-line-chart [Labels]="dates" [Data]="countryTimeSeries"></app-line-chart>
+    </div>
+</div>
+

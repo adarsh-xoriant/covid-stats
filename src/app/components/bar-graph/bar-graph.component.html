@@ -1,0 +1,11 @@
+<div class="chart-wrapper">
+    <canvas baseChart 
+    [datasets]="[{data:data,label:'Cases'}]"
+    [labels]="labels"
+    [options]="barChartOptions"
+    [plugins]="barChartPlugins"
+    [legend]="barChartLegend"
+    [chartType]="barChartType"
+    [colors]="chartColors">
+  </canvas>
+</div>
